@@ -1,16 +1,25 @@
-#include <ThreeWire.h>  // librerias 
+//Dwonload library ds1302 by makuma
+//Descargar libreria ds1302 by makuma para correcto funcionamiento de este codigo.
+
+//Inclusión de la librerias a usar.
+#include <ThreeWire.h>
 #include <RtcDS1302.h>
 
+// inicio de las librerias.
 ThreeWire myWire(4, 5, 2); // Pines seleccionado para el reloj por medio de la libreria de arduino
 RtcDS1302<ThreeWire> Rtc(myWire);
+
+//variables globales para el programa.
 bool activacion;
 int segundos = 2;
+
 void setup() {
   Serial.begin(9600);
   Rtc.Begin();
   comprobacionReloj();
   menu();
 }
+
 void loop() {
   char caracter = leerCaracter();
   switch (caracter) {

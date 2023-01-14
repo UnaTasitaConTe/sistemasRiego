@@ -1,4 +1,6 @@
-char leerCaracter() { // funcion de leer un caracter
+
+//captura de caracter por consola.
+char leerCaracter() {
   if (Serial.available() > 0) {
     char caracter = Serial.read();
     return caracter;
@@ -7,7 +9,9 @@ char leerCaracter() { // funcion de leer un caracter
     return 0;
   }
 }
-int leerEntero() { // funcion de leer un entero
+
+//captura de entero por consola.
+int leerEntero() {
   int num;
   while (Serial.available() == 0) {
   }
@@ -15,21 +19,41 @@ int leerEntero() { // funcion de leer un entero
   return num;
 }
 
+//función de apagado de riego.
 void riegoApagado() {
   int rele = 7;
   pinMode(rele, OUTPUT);
   digitalWrite(rele, HIGH);
 }
+
+//funcion de encendido de riego.
 void riegoEncendido() {
   int rele = 7;
   pinMode(rele, OUTPUT);
   digitalWrite(rele, LOW);
 }
+
+//encendido de riego y apagado de riego
+void riego(boolean dato) {
+  int rele = 7;
+  if (dato) {
+    pinMode(rele, OUTPUT);
+    digitalWrite(rele, LOW);
+  }
+  else {
+    pinMode(rele, OUTPUT);
+    digitalWrite(rele, HIGH);
+  }
+}
+
+//despligue de menu
 void menu() {
   Serial.println("MENU DE MANEJO");
   Serial.println("Elija una opcion\na.Riego Automatico\nb.Riego Cronometrado");
   Serial.println("Para desactivar oprima c");
 }
+
+//funcion para riego automatico
 void riegoAuto() {
   int rele = 7;
   pinMode(rele, OUTPUT);
@@ -46,6 +70,8 @@ void riegoAuto() {
   }
   return;
 }
+
+// funcion para desactivar el riego.
 void desactivacion() {
   char caracter = leerCaracter();
   if (caracter == 'c') {

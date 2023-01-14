@@ -1,6 +1,7 @@
 #define countof(a) (sizeof(a) / sizeof(a[0]))
-void printDateTime(const RtcDateTime& dt) {
 
+//imprime la fecha que tiene almacenada el reloj.
+void printDateTime(const RtcDateTime& dt) {
   char datestring[20];
   snprintf_P(datestring,
              countof(datestring),
@@ -13,6 +14,11 @@ void printDateTime(const RtcDateTime& dt) {
              dt.Second() );
   Serial.print(datestring);
 }
+
+/*comprobacion de hora, esta función es parte de la documentación de los ejemplos proporcionados por la librerias
+   la neta no se que hace xd, en su momento solo Dios y yo sabiamos como funcionaba esto ahora solo Dios.
+   Pero esta con comentarios que traduje y eso :D
+*/
 void comprobacionReloj() {
   RtcDateTime compiled = RtcDateTime(__DATE__, __TIME__);// Le manda la informacion al Reloj para que configure la fecha y hora
   printDateTime(compiled);
